@@ -27,12 +27,12 @@ export const signin = async (req, res, next) => {
       return next(errorHandler(402, "Invalid Credentials"));
     }
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-    const { password: hashedPassword, email:_, ...rest } = validUser._doc;
-    const expiryDate = new Date(Date.now()+86400000);
+    const { password: hashedPassword, email: _, ...rest } = validUser._doc;
+    const expiryDate = new Date(Date.now() + 86400000);
     res
-      .cookie("access_token", token, { httpOnly: true, expires:expiryDate})
+      .cookie("access_token", token, { httpOnly: true, expires: expiryDate })
       .status(200)
-      .json(rest);
+      .json({...rest, message:"Signed in successfully!!!", success: true});
   } catch (err) {
     next(err);
   }
