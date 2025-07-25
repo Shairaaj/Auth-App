@@ -18,6 +18,9 @@ export const Header = () => {
           <Link to="/signin">
             <li>Signin</li>
           </Link>
+          <Link to="/signup">
+          <li>Signup</li>
+          </Link>
         </ul>
       </div>
     </div>
